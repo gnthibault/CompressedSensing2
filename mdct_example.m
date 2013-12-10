@@ -24,7 +24,7 @@ timeDiscrete = [0:1:Nech-1];
 
 %Define our MDCT space
 mdctFrequencySize = Nech/2;
-mdctTimeSize = 16;
+mdctTimeSize = 4;
 mdctSpace = zeros(mdctTimeSize,mdctFrequencySize);
 windowSize = Nech/mdctTimeSize;
 
@@ -52,7 +52,7 @@ reconstruction = 2*reconstruction / (mdctTimeSize*mdctFrequencySize);
 figure(1)
 plot(time,signal,'g');
 hold on;
-plot(time,reconstruction,'r');
+plot(time,reconstruction,':r');
 xlabel('Time in s','FontSize',16);
 ylabel('Signal value (no unit)','FontSize',16);
 title('\it{ Signal reconstruction from MDCT transform }','FontSize',16);
@@ -69,7 +69,7 @@ legend('Difference between original signal and reconstruction from MDCT transfor
 %Plot mdctSpace
 figure(3)
 image( mdctSpace )
-axis off; % Remove axis ticks and numbers
+colorbar
 xlabel('Frequency related dimension','FontSize',16);
 ylabel('Time related dimension','FontSize',16);
 title('\it{ Sparse MDCT representation of the music }','FontSize',16);
@@ -77,7 +77,7 @@ legend('Each coefficient of this matrix represent a component of the original so
 
 
 %Play the music !
-soudsc(signal,Fe);
-soudsc(reconstruction,Fe);
+soundsc(signal,Fe);
+soundsc(reconstruction,Fe);
 
 
